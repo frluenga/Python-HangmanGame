@@ -32,15 +32,34 @@ def run():
                         for (outer_k, outer_v) in nested_dict.items()}
     # print(float_dict)
 
+
+    # FUNCIONES ANONIMAS:
+    # despues de declararla como lambda se coloca los argumentos.
+    
     palindrome = lambda string: string == string[::-1]
-    # print(palindrome('ana'))
+    
 
     # FUNCIONES DE ORDEN SUPERIOR (map, filter, reduce):
-    # Filter: Aplica una función de filtro a un iterable
-    # Devuelve un iterable
+
+    # FILTER: Aplica una función de filtro a un iterable,
+    # el cual devuelve un iterable ya filtrado, la función
+    # interna esta retornando valores boolean, es decir
+    # revisa dentro del iterable cuales cumplen la condición
+    # el segundo parametro que recibe 'list' es el iterable
+    # toca convertirlo en list, porque filter por si sola devuelve
+    # es un iterador
     odd_ = list(filter(lambda x: x%2 != 0, my_list))
-    # map: Aplica una función a un iterable, retorna un iterable
+
+
+    # MAP: Aplica una función a un iterable, retorna un iterable
+    # ya modificado o afectado por la función que ingreso como 
+    # parametro a la función map. toca convertirlo en list, porque 
+    # map por si sola devuelve es un iterador
     sq_ = list(map(lambda x: x**2,my_list))
+
+
+    # REDUCE: opera todo los valores del iterable agrupando el resultado,
+    # en un solo resultado
     rd_ = reduce(lambda a, b: a*b , my_list)
     print(rd_)
 

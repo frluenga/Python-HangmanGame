@@ -19,10 +19,12 @@ def select_word(list):
     
 def print_main():
     print('- '*10)
-    print(' 1.PLAY\n','2.EXIT')
+    print(' 1.JUGAR\n','2.SALIR')
     print('- '*10)
-    sel = int(input('Please, Select an Option: '))
+    sel = int(input('Por favor, Selecciona una opción [1/2]: '))
+    assert sel == 1 or sel == 2, 'Selecciona una opción correcta'
     return sel
+
 
 def chars(word):
     dict_ = {i:i for i in range(1,len(word)+1)}
@@ -33,7 +35,11 @@ def chars(word):
     return dict_
 
 def input_char():
-    char_ = input('Write a letter: ')
+    char_ = input('Escribe una letra: ')
+    if len(char_) == 0:
+        raise ValueError()
+    elif len(char_) >= 2:
+        raise ValueError()
     return char_
 
 def show_char(word_dict):
@@ -56,11 +62,20 @@ def run():
     words = read()
     words = [accents(word) for word in words]
     word_select = select_word(words)
-    print(word_select)
     dict_ = chars(word_select)
-    print_main()  
-    list_ = show_char(dict_)
-    print(f'YOU WIN, THE WORD WAS {word_select}' ) 
+
+    try:
+        while True:
+            opc = print_main()
+            if opc == 1:
+                list_ = show_char(dict_)
+                print(f'Ganaste, La palabra era {word_select.upper()}' )
+            elif opc == 2:
+                break
+    except ValueError:
+        print('Selecciona una opción correcta')
+
+    
         
 if __name__ == '__main__':
     run()
